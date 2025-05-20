@@ -73,7 +73,7 @@ function writeOutputFiles(result, fileType) {
         xml: "./yaksha-test-cases.xml"
     };
 
-    let resultStatus = result.status === 'Pass' ? 'PASS' : 'FAIL';
+    let resultStatus = result.status === 'Passed' ? 'PASS' : 'FAIL';
     let output = `${result.methodName}=${resultStatus}\n`;
 
     let outputFilePath = outputFiles[fileType];
@@ -84,7 +84,7 @@ function writeOutputFiles(result, fileType) {
 
 // Function to check if function is defined correctly
 function checkFunctionDefinition(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let functionDefined = false;
 
@@ -95,7 +95,7 @@ function checkFunctionDefinition(ast) {
     });
 
     if (!functionDefined) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must define a function correctly.");
     }
 
@@ -106,7 +106,7 @@ function checkFunctionDefinition(ast) {
         'FunctionDefinition',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -115,7 +115,7 @@ function checkFunctionDefinition(ast) {
 
 // Function to check if function arguments are used correctly
 function checkFunctionArguments(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let argumentsUsed = false;
 
@@ -126,7 +126,7 @@ function checkFunctionArguments(ast) {
     });
 
     if (!argumentsUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must use function arguments inside your function.");
     }
 
@@ -137,7 +137,7 @@ function checkFunctionArguments(ast) {
         'FunctionArgumentsUsage',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -146,7 +146,7 @@ function checkFunctionArguments(ast) {
 
 // Function to check if default function arguments are used correctly
 function checkDefaultArguments(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let defaultArgumentsUsed = false;
 
@@ -161,7 +161,7 @@ function checkDefaultArguments(ast) {
     });
 
     if (!defaultArgumentsUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must use default arguments in your function.");
     }
 
@@ -172,7 +172,7 @@ function checkDefaultArguments(ast) {
         'DefaultArgumentsUsage',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -181,7 +181,7 @@ function checkDefaultArguments(ast) {
 
 // Function to check if the return statement is used correctly
 function checkReturnStatement(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let returnUsed = false;
 
@@ -194,7 +194,7 @@ function checkReturnStatement(ast) {
     });
 
     if (!returnUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must use the return statement inside your function.");
     }
 
@@ -205,7 +205,7 @@ function checkReturnStatement(ast) {
         'ReturnStatementUsage',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -252,7 +252,7 @@ function gradeAssignment() {
         console.log(resultsToSend);
 
         // Log the test result in yellow for pass and red for fail using ANSI codes
-        if (testCaseResult.status === 'Pass') {
+        if (testCaseResult.status === 'Passed') {
             console.log(`\x1b[33m${testCaseResult.methodName}: Pass\x1b[0m`); // Yellow for pass
         } else {
             console.log(`\x1b[31m${testCaseResult.methodName}: Fail\x1b[0m`); // Red for fail
